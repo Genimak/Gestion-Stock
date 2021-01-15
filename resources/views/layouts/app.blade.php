@@ -1,14 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>  {{@config('app.name')}} @yield('titre')</title>
- <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-         </head>
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <body class="py-10 flex flex-col justify-between items-center  min-h-screen">
- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+   
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -62,24 +76,9 @@
             </div>
         </nav>
 
-    <main class="py-10 flex flex-col justify-between items-center " role="main">
-      
- @yield('content')
-    </main> 
-  
-
- <p>contenue de chaque page</p>
-
-   <footer>
-   	<p class ="text-gray-400">
-   		&copy; Copyright {{date('Y')}}  &middot; 
-      @if(!Route::is('about'))
-
-      <a href="{{route('about')}}" class="text-indigo-500 hover:text-indigo-600 underline"> À propos de nous</a>  
-      @endif
-   	</p>
-
-   </footer>
-
-    </body>
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+</body>
 </html>
